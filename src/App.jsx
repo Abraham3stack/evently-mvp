@@ -16,6 +16,7 @@ import CheckoutPage from './pages/attendee/CheckoutPage';
 import MyTicketsPage from './pages/attendee/MyTicketsPage';
 import TicketDetailPage from './pages/attendee/TicketDetailPage';
 import OrganizerDashboard from './pages/organizer/OrganizerDashboard';
+import ManageEventsPage from './pages/organizer/ManageEventsPage';
 import CreateEventPage from './pages/organizer/CreateEventPage';
 import ManageEventPage from './pages/organizer/ManageEventPage';
 import AttendeeListPage from './pages/organizer/AttendeeListPage';
@@ -59,6 +60,7 @@ function App() {
 
                   {/* Organizer Routes */}
                   <Route path="/organizer" element={<OrganizerDashboard />} />
+                  <Route path="/organizer/events" element={<ManageEventsPage />} />
                   <Route path="/organizer/create-event" element={<CreateEventPage />} />
                   <Route path="/organizer/events/:eventId" element={<ManageEventPage />} />
                   <Route path="/organizer/events/:eventId/attendees" element={<AttendeeListPage />} />

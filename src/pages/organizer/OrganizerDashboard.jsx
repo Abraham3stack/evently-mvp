@@ -17,7 +17,7 @@ export default function OrganizerDashboard() {
     <div className="organizer-dashboard">
       <OrganizerTopbar />
       <div className="org-layout">
-        <OrganizerSidebar />
+        <OrganizerSidebar activeItem="Dashboard" />
         <main className="org-content">
           <section className="org-greeting">
             <div className="greeting-left">
