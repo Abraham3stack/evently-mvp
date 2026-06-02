@@ -14,7 +14,7 @@ import {
 const mainNav = [
   { label: 'Dashboard', icon: LayoutGrid, to: '/organizer' },
   { label: 'Manage Events', icon: CalendarCheck, to: '/organizer/events' },
-  { label: 'Booking & Tickets', icon: Ticket },
+  { label: 'Booking & Tickets', icon: Ticket, to: '/organizer/bookings' },
   { label: 'Check-in', icon: BadgeCheck },
   { label: 'Verify', icon: ShieldCheck },
   { label: 'Analytics', icon: BarChart3 }

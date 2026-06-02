@@ -168,10 +168,6 @@
   color: #6b7280;
 }
 
-.org-sidebar-item.active svg {
-  color: #f1017c;
-}
-
 .org-sidebar-item.active {
   font-weight: 600;
 }

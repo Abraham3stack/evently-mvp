@@ -361,6 +361,10 @@
   color: #6b7280;
 }
 
+.org-sidebar-item.active svg {
+  color: #f1017c;
+}
+
 .activity-legend {
   display: flex;
   align-items: center;
