@@ -3,7 +3,11 @@ import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import MainLayout from './components/layout/MainLayout';
 import './App.css';
 
-// Page imports
+// Auth pages
+import LoginPage from './pages/auth/LoginPage';
+import RegisterPage from './pages/auth/RegisterPage';
+
+// Main pages
 import HomePage from './pages/HomePage';
 import NotFoundPage from './pages/NotFoundPage';
 import EventsPage from './pages/attendee/EventsPage';
@@ -34,32 +38,44 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
-        <MainLayout>
-          <Routes>
-            {/* Attendee Routes */}
-            <Route path="/" element={<HomePage />} />
-            <Route path="/events" element={<EventsPage />} />
-            <Route path="/events/:eventId" element={<EventDetailPage />} />
-            <Route path="/checkout/:eventId" element={<CheckoutPage />} />
-            <Route path="/my-tickets" element={<MyTicketsPage />} />
-            <Route path="/tickets/:ticketId" element={<TicketDetailPage />} />
+        <Routes>
+          {/* Auth Routes - No Layout */}
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
 
-            {/* Organizer Routes */}
-            <Route path="/organizer" element={<OrganizerDashboard />} />
-            <Route path="/organizer/create-event" element={<CreateEventPage />} />
-            <Route path="/organizer/events/:eventId" element={<ManageEventPage />} />
-            <Route path="/organizer/events/:eventId/attendees" element={<AttendeeListPage />} />
-            <Route path="/organizer/events/:eventId/validate" element={<ValidateTicketPage />} />
-            <Route path="/organizer/events/:eventId/analytics" element={<AnalyticsPage />} />
+          {/* Main App Routes - With Layout */}
+          <Route
+            path="*"
+            element={
+              <MainLayout>
+                <Routes>
+                  {/* Attendee Routes */}
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/events" element={<EventsPage />} />
+                  <Route path="/events/:eventId" element={<EventDetailPage />} />
+                  <Route path="/checkout/:eventId" element={<CheckoutPage />} />
+                  <Route path="/my-tickets" element={<MyTicketsPage />} />
+                  <Route path="/tickets/:ticketId" element={<TicketDetailPage />} />
 
-            {/* Voting Routes */}
-            <Route path="/voting/:eventId" element={<VotingPage />} />
-            <Route path="/voting/:eventId/results" element={<VotingResultsPage />} />
+                  {/* Organizer Routes */}
+                  <Route path="/organizer" element={<OrganizerDashboard />} />
+                  <Route path="/organizer/create-event" element={<CreateEventPage />} />
+                  <Route path="/organizer/events/:eventId" element={<ManageEventPage />} />
+                  <Route path="/organizer/events/:eventId/attendees" element={<AttendeeListPage />} />
+                  <Route path="/organizer/events/:eventId/validate" element={<ValidateTicketPage />} />
+                  <Route path="/organizer/events/:eventId/analytics" element={<AnalyticsPage />} />
 
-            {/* 404 Route */}
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </MainLayout>
+                  {/* Voting Routes */}
+                  <Route path="/voting/:eventId" element={<VotingPage />} />
+                  <Route path="/voting/:eventId/results" element={<VotingResultsPage />} />
+
+                  {/* 404 Route */}
+                  <Route path="*" element={<NotFoundPage />} />
+                </Routes>
+              </MainLayout>
+            }
+          />
+        </Routes>
       </Router>
     </QueryClientProvider>
   );
