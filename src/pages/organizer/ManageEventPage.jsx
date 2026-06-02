@@ -99,7 +99,7 @@ export default function ManageEventPage() {
             <h1>Event Management Section</h1>
           </div>
 
-          <OrganizerFilters />
+          <OrganizerFilters insightsLink={`/organizer/events/${eventId}/insights`} />
 
           <section className="org-details-grid">
             <div className="org-details-card">

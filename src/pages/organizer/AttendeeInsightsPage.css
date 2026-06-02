@@ -1,0 +1,181 @@
+.organizer-insights {
+  background: #ffffff;
+  color: #111827;
+  min-height: 100vh;
+  padding-bottom: 40px;
+}
+
+.organizer-insights header:not(.org-topbar),
+.organizer-insights footer {
+  display: none;
+}
+
+.insights-layout {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 2.2fr 1fr;
+  gap: 20px;
+}
+
+.insights-charts {
+  display: grid;
+  gap: 20px;
+}
+
+.insight-card {
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #e5e7eb;
+  padding: 18px 20px;
+  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.08);
+}
+
+.insight-card h2 {
+  margin: 0 0 16px;
+  font-size: 16px;
+  color: #7e22ce;
+}
+
+.insight-chart {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 16px;
+  align-items: center;
+}
+
+.insights-donut,
+.insights-pie {
+  width: 200px;
+  height: 200px;
+}
+
+.insight-values {
+  display: grid;
+  gap: 10px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.insight-values strong {
+  display: block;
+  color: #111827;
+}
+
+.insight-values span {
+  font-size: 11px;
+}
+
+.insight-legend {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.insights-side {
+  display: grid;
+  gap: 16px;
+}
+
+.insights-metric {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  padding: 16px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+}
+
+.metric-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #6b7280;
+  letter-spacing: 0.02em;
+}
+
+.metric-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: #f3f4f6;
+  display: grid;
+  place-items: center;
+  color: #7e22ce;
+}
+
+.metric-body {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.metric-body h3 {
+  margin: 0 0 6px;
+  font-size: 15px;
+  color: #111827;
+}
+
+.metric-body strong {
+  font-size: 20px;
+  color: #f1017c;
+}
+
+.trend {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.trend.up {
+  color: #22c55e;
+}
+
+.trend.down {
+  color: #ef4444;
+}
+
+@media (max-width: 1024px) {
+  .insights-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .insight-chart {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .insight-values {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    text-align: center;
+  }
+
+  .insight-legend {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .insight-values {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .insight-legend {
+    grid-template-columns: 1fr;
+  }
+}

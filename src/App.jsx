@@ -19,6 +19,7 @@ import OrganizerDashboard from './pages/organizer/OrganizerDashboard';
 import ManageEventsPage from './pages/organizer/ManageEventsPage';
 import CreateEventPage from './pages/organizer/CreateEventPage';
 import ManageEventPage from './pages/organizer/ManageEventPage';
+import AttendeeInsightsPage from './pages/organizer/AttendeeInsightsPage';
 import AttendeeListPage from './pages/organizer/AttendeeListPage';
 import ValidateTicketPage from './pages/organizer/ValidateTicketPage';
 import AnalyticsPage from './pages/organizer/AnalyticsPage';
@@ -63,6 +64,7 @@ function App() {
                   <Route path="/organizer/events" element={<ManageEventsPage />} />
                   <Route path="/organizer/create-event" element={<CreateEventPage />} />
                   <Route path="/organizer/events/:eventId" element={<ManageEventPage />} />
+                  <Route path="/organizer/events/:eventId/insights" element={<AttendeeInsightsPage />} />
                   <Route path="/organizer/events/:eventId/attendees" element={<AttendeeListPage />} />
                   <Route path="/organizer/events/:eventId/validate" element={<ValidateTicketPage />} />
                   <Route path="/organizer/events/:eventId/analytics" element={<AnalyticsPage />} />

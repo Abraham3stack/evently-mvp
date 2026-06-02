@@ -1,15 +1,22 @@
+import { Link } from 'react-router-dom';
 import { Search, ChevronDown, Calendar } from 'lucide-react';
 
-export default function OrganizerFilters() {
+export default function OrganizerFilters({ insightsLink }) {
   return (
     <div className="org-manage-header">
       <div className="org-actions">
         <button type="button" className="org-btn org-btn-primary">
           + New Event
         </button>
-        <button type="button" className="org-btn org-btn-outline org-btn-pill">
-          Attendee Insights <ChevronDown size={16} />
-        </button>
+        {insightsLink ? (
+          <Link to={insightsLink} className="org-btn org-btn-outline org-btn-pill">
+            Attendee Insights <ChevronDown size={16} />
+          </Link>
+        ) : (
+          <button type="button" className="org-btn org-btn-outline org-btn-pill">
+            Attendee Insights <ChevronDown size={16} />
+          </button>
+        )}
       </div>
       <div className="org-controls">
         <div className="org-search">
