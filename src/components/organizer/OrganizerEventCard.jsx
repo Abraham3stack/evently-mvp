@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Eye, MoreVertical, MapPin, Calendar } from 'lucide-react';
 
 export default function OrganizerEventCard({ event }) {
@@ -15,9 +16,9 @@ export default function OrganizerEventCard({ event }) {
         </div>
       </div>
       <div className="org-event-actions">
-        <button type="button" className="org-event-view">
+        <Link to={`/organizer/events/${event.id}`} className="org-event-view">
           <Eye size={16} /> view
-        </button>
+        </Link>
         <div className="org-event-more">
           <MoreVertical size={16} />
           <span>More options</span>
