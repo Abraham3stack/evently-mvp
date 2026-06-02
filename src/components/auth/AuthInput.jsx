@@ -11,25 +11,37 @@ export default function AuthInput({
   disabled = false,
   ...props
 }) {
+  const inputStyle = {
+    height: '56px',
+    width: '100%',
+    padding: '0 16px',
+    borderRadius: '10px',
+    border: `1px solid ${error ? '#ef4444' : '#9CA8BC'}`,
+    backgroundColor: '#ffffff',
+    color: '#111827',
+    fontSize: '16px',
+    outline: 'none',
+    boxSizing: 'border-box'
+  };
+
   return (
-    <div className="mb-5">
-      <label className="block text-sm font-medium text-gray-900 mb-2">
-        <span className="text-red-500">*</span>{label}
+    <div style={{ marginBottom: '20px' }}>
+      <label style={{ display: 'block', fontSize: '14px', fontWeight: 600, color: '#111827', marginBottom: '8px' }}>
+        {label}
       </label>
       <input
         type={type}
         placeholder={placeholder}
         disabled={disabled}
-        style={{ backgroundColor: '#ffffff', color: '#111827' }}
-        className={`w-full px-4 py-3 border rounded-lg text-base text-gray-900 placeholder-gray-400 transition-all duration-200 ${
-          error
-            ? 'border-red-500 focus:ring-2 focus:ring-red-200 focus:border-red-500'
-            : 'border-gray-300 focus:ring-2 focus:ring-pink-200 focus:border-pink-500'
-        } focus:outline-none disabled:bg-gray-50 disabled:cursor-not-allowed disabled:text-gray-500`}
+        style={{
+          ...inputStyle,
+          backgroundColor: disabled ? '#F9FAFB' : '#ffffff',
+          color: disabled ? '#6B7280' : '#111827'
+        }}
         {...props}
       />
       {error && (
-        <p className="text-red-500 text-xs mt-1.5 font-medium">{error}</p>
+        <p style={{ color: '#ef4444', fontSize: '12px', marginTop: '6px', fontWeight: 600 }}>{error}</p>
       )}
     </div>
   );

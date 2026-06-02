@@ -60,42 +60,42 @@ export default function RegisterPage() {
   };
 
   const gradientContent = (
-    <div className="text-center max-w-md">
-      <h2 className="text-4xl md:text-5xl font-black text-white mb-6 leading-tight">
+    <div style={{ textAlign: 'center', maxWidth: '420px' }}>
+      <h2 style={{ fontSize: '40px', fontWeight: 800, color: '#ffffff', marginBottom: '20px', lineHeight: '1.15' }}>
         Let's Launch Your Next Big Event.
       </h2>
-      <p className="text-white text-base leading-relaxed">
-        Join thousands of creators using <span className="font-bold">EVENTLY</span> to build high-converting event pages, manage ticket tiers, and track revenue instantly.
+      <p style={{ color: '#ffffff', fontSize: '15px', lineHeight: '1.6' }}>
+        Join thousands of creators using <span style={{ fontWeight: 700 }}>EVENTLY</span> to build high-converting event pages, manage ticket tiers, and track revenue instantly.
       </p>
     </div>
   );
 
   return (
     <>
-      <AuthLayout gradientContent={gradientContent}>
+      <AuthLayout gradientContent={gradientContent} formMaxWidth={540}>
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="w-full"
+          style={{ width: '100%' }}
         >
           {/* Logo */}
-          <motion.div variants={itemVariants} className="mb-12">
+          <motion.div variants={itemVariants} style={{ marginBottom: '40px' }}>
             <AuthLogo />
           </motion.div>
 
           {/* Heading */}
-          <motion.div variants={itemVariants} className="mb-8">
-            <h1 className="text-3xl md:text-4xl font-black text-gray-900 mb-3 leading-tight">
+          <motion.div variants={itemVariants} style={{ marginBottom: '32px' }}>
+            <h1 style={{ fontSize: '36px', fontWeight: 800, color: '#111827', marginBottom: '12px', lineHeight: '1.1' }}>
               Create your free organizer account
             </h1>
-            <p className="text-gray-500 text-sm leading-relaxed">
+            <p style={{ color: '#9CA3AF', fontSize: '14px', lineHeight: '1.5' }}>
               No credit card required. Set up your profile and start creating immediately.
             </p>
           </motion.div>
 
           {/* Form */}
-          <motion.form onSubmit={handleSubmit(onSubmit)} variants={itemVariants} className="mb-8">
+          <motion.form onSubmit={handleSubmit(onSubmit)} variants={itemVariants} style={{ marginBottom: '32px' }}>
             {/* Organization */}
             <AuthInput
               label="Organization"
@@ -137,31 +137,40 @@ export default function RegisterPage() {
             />
 
             {/* Terms */}
-            <motion.div variants={itemVariants} className="mb-8 text-xs md:text-sm text-gray-600 leading-relaxed">
+            <motion.div variants={itemVariants} style={{ marginBottom: '28px', color: '#9CA3AF', fontSize: '13px', lineHeight: '1.6' }}>
               <p>
                 By clicking{' '}
-                <span className="font-semibold text-gray-900">"Create Account"</span>, I agree to
+                <span style={{ fontWeight: 600, color: '#111827' }}>
+                  "Create Account"
+                </span>, I agree to
                 Evently's{' '}
-                <Link to="#" className="text-red-600 hover:text-red-700 font-semibold">
+                <Link to="#" style={{ color: '#dc2626', fontWeight: 600, textDecoration: 'none' }}>
                   Terms of Service
                 </Link>{' '}
                 and{' '}
-                <Link to="#" className="text-red-600 hover:text-red-700 font-semibold">
+                <Link to="#" style={{ color: '#dc2626', fontWeight: 600, textDecoration: 'none' }}>
                   Privacy Policy
                 </Link>
               </p>
             </motion.div>
 
             {/* Register Button */}
-            <motion.div variants={itemVariants} className="mb-6">
+            <motion.div variants={itemVariants} style={{ marginBottom: '24px' }}>
               <button
                 type="submit"
                 disabled={isSubmitting}
                 style={{
                   background: 'linear-gradient(to right, #ec4899, #9333ea)',
                   opacity: isSubmitting ? 0.7 : 1,
+                  width: '100%',
+                  height: '58px',
+                  borderRadius: '10px',
+                  border: 'none',
+                  fontSize: '16px',
+                  fontWeight: 700,
+                  color: '#ffffff',
+                  cursor: isSubmitting ? 'not-allowed' : 'pointer'
                 }}
-                className="w-full text-white font-bold py-3 px-4 rounded-lg transition-all duration-200 disabled:cursor-not-allowed hover:shadow-lg"
                 onMouseEnter={(e) => { if (!isSubmitting) e.currentTarget.style.background = 'linear-gradient(to right, #db2777, #7e22ce)'; }}
                 onMouseLeave={(e) => { if (!isSubmitting) e.currentTarget.style.background = 'linear-gradient(to right, #ec4899, #9333ea)'; }}
               >
@@ -171,12 +180,12 @@ export default function RegisterPage() {
           </motion.form>
 
           {/* Login Link */}
-          <motion.div variants={itemVariants} className="text-center text-gray-600 text-sm">
+          <motion.div variants={itemVariants} style={{ textAlign: 'center', color: '#6B7280', fontSize: '14px' }}>
             <p>
               Already have an account?{' '}
               <Link
                 to="/login"
-                className="text-pink-600 hover:text-pink-700 font-semibold transition-colors"
+                style={{ color: '#ec4899', fontWeight: 600, textDecoration: 'none' }}
               >
                 Log in
               </Link>
@@ -192,9 +201,9 @@ export default function RegisterPage() {
         onClose={handleSuccessClose}
         size="sm"
       >
-        <div className="text-center py-4">
-          <div className="text-6xl mb-4">✨</div>
-          <p className="text-gray-700 mb-6">
+        <div style={{ textAlign: 'center', padding: '16px 0' }}>
+          <div style={{ fontSize: '48px', marginBottom: '16px' }}>✨</div>
+          <p style={{ color: '#374151', marginBottom: '24px' }}>
             Your organizer account has been created successfully. Redirecting to login...
           </p>
           <Button

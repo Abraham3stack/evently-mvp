@@ -4,7 +4,6 @@
  * Matches Figma login design
  */
 
-import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -12,12 +11,10 @@ import { motion } from 'framer-motion';
 import AuthLayout from '@/components/auth/AuthLayout';
 import AuthLogo from '@/components/auth/AuthLogo';
 import AuthInput from '@/components/auth/AuthInput';
-import Button from '@/components/common/Button';
 import { loginSchema } from '@/schemas/authSchemas';
 
 export default function LoginPage() {
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
 
   const {
     register,
@@ -28,10 +25,8 @@ export default function LoginPage() {
   });
 
   const onSubmit = async (data) => {
-    setIsLoading(true);
     // Simulate login delay
     await new Promise(resolve => setTimeout(resolve, 1500));
-    setIsLoading(false);
     navigate('/events');
   };
 
@@ -55,31 +50,33 @@ export default function LoginPage() {
     }
   };
 
+  const gradientContent = <div />;
+
   return (
-    <AuthLayout gradientContent={null}>
+    <AuthLayout gradientContent={gradientContent} formMaxWidth={520}>
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="w-full"
+        style={{ width: '100%' }}
       >
         {/* Logo */}
-        <motion.div variants={itemVariants} className="mb-12">
+        <motion.div variants={itemVariants} style={{ marginBottom: '40px' }}>
           <AuthLogo />
         </motion.div>
 
         {/* Heading */}
-        <motion.div variants={itemVariants} className="mb-8">
-          <h1 className="text-4xl font-black text-gray-900 mb-3 leading-tight">
+        <motion.div variants={itemVariants} style={{ marginBottom: '32px' }}>
+          <h1 style={{ fontSize: '42px', fontWeight: 800, color: '#111827', marginBottom: '12px', lineHeight: '1.1' }}>
             Welcome back!
           </h1>
-          <p className="text-gray-500 text-sm leading-relaxed">
+          <p style={{ color: '#9CA3AF', fontSize: '14px', lineHeight: '1.5' }}>
             Continue with the email address used to create your account
           </p>
         </motion.div>
 
         {/* Form */}
-        <motion.form onSubmit={handleSubmit(onSubmit)} variants={itemVariants} className="mb-8">
+        <motion.form onSubmit={handleSubmit(onSubmit)} variants={itemVariants} style={{ marginBottom: '32px' }}>
           {/* Email */}
           <AuthInput
             label="Email address"
@@ -101,25 +98,32 @@ export default function LoginPage() {
           />
 
           {/* Forgot Password */}
-          <motion.div variants={itemVariants} className="mb-6 text-right">
+          <motion.div variants={itemVariants} style={{ marginBottom: '20px', textAlign: 'right' }}>
             <Link
               to="#"
-              className="text-pink-600 hover:text-pink-700 font-semibold text-sm transition-colors"
+              style={{ color: '#ec4899', fontWeight: 600, fontSize: '14px', textDecoration: 'none' }}
             >
               Forgot password?
             </Link>
           </motion.div>
 
           {/* Login Button */}
-          <motion.div variants={itemVariants} className="mb-6">
+          <motion.div variants={itemVariants} style={{ marginBottom: '20px' }}>
             <button
               type="submit"
               disabled={isSubmitting}
               style={{
                 background: 'linear-gradient(to right, #ec4899, #9333ea)',
                 opacity: isSubmitting ? 0.7 : 1,
+                width: '100%',
+                height: '58px',
+                borderRadius: '10px',
+                border: 'none',
+                fontSize: '16px',
+                fontWeight: 700,
+                color: '#ffffff',
+                cursor: isSubmitting ? 'not-allowed' : 'pointer'
               }}
-              className="w-full text-white font-bold py-3 px-4 rounded-lg transition-all duration-200 disabled:cursor-not-allowed hover:shadow-lg"
               onMouseEnter={(e) => { if (!isSubmitting) e.currentTarget.style.background = 'linear-gradient(to right, #db2777, #7e22ce)'; }}
               onMouseLeave={(e) => { if (!isSubmitting) e.currentTarget.style.background = 'linear-gradient(to right, #ec4899, #9333ea)'; }}
             >
@@ -129,19 +133,34 @@ export default function LoginPage() {
         </motion.form>
 
         {/* Divider */}
-        <motion.div variants={itemVariants} className="flex items-center gap-4 mb-6">
-          <div className="flex-1 h-px bg-gray-300" />
-          <span className="text-gray-600 text-sm font-medium">OR</span>
-          <div className="flex-1 h-px bg-gray-300" />
+        <motion.div variants={itemVariants} style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px' }}>
+          <div style={{ flex: 1, height: '1px', background: '#E5E7EB' }} />
+          <span style={{ color: '#9CA3AF', fontSize: '13px', fontWeight: 600 }}>OR</span>
+          <div style={{ flex: 1, height: '1px', background: '#E5E7EB' }} />
         </motion.div>
 
         {/* Google Login */}
-        <motion.div variants={itemVariants} className="mb-8">
+        <motion.div variants={itemVariants} style={{ marginBottom: '24px' }}>
           <button
             type="button"
-            className="w-full border border-gray-300 rounded-lg py-3 px-4 flex items-center justify-center gap-3 hover:bg-gray-50 active:bg-gray-100 transition-colors font-semibold text-gray-700"
+            style={{
+              width: '100%',
+              height: '58px',
+              border: '1px solid #9CA8BC',
+              borderRadius: '10px',
+              background: '#ffffff',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '10px',
+              fontWeight: 600,
+              color: '#374151',
+              cursor: 'pointer'
+            }}
+            onMouseEnter={(e) => { e.currentTarget.style.background = '#F9FAFB'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.background = '#ffffff'; }}
           >
-            <svg className="w-5 h-5" viewBox="0 0 24 24">
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
               <path
                 fill="#4285F4"
                 d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -164,12 +183,12 @@ export default function LoginPage() {
         </motion.div>
 
         {/* Sign Up Link */}
-        <motion.div variants={itemVariants} className="text-center text-gray-600 text-sm">
+        <motion.div variants={itemVariants} style={{ textAlign: 'center', color: '#6B7280', fontSize: '14px' }}>
           <p>
             Don't have an account?{' '}
             <Link
               to="/register"
-              className="text-pink-600 hover:text-pink-700 font-semibold transition-colors"
+              style={{ color: '#ec4899', fontWeight: 600, textDecoration: 'none' }}
             >
               Create one
             </Link>
