@@ -9,7 +9,6 @@ import {
   Clock
 } from 'lucide-react';
 import Navbar from '@/components/home/Navbar';
-import EventCard from '@/components/attendee/EventCard';
 import './EventDetailPage.css';
 
 const placeholderImage =
@@ -99,13 +98,7 @@ const relatedEvents = [
     category: 'Technology',
     date: '2026-07-12T09:00:00.000Z',
     location: 'Landmark Event Center',
-    venue: 'Victoria Island, Lagos',
-    image: placeholderImage,
-    featured: false,
-    organizer: { name: 'Evently', image: placeholderImage },
-    attendeeCount: 230,
-    ticketTiers: [{ quantity: 200, sold: 120 }],
-    priceRange: { min: 0, max: 0 }
+    image: placeholderImage
   },
   {
     id: '5',
@@ -113,13 +106,7 @@ const relatedEvents = [
     category: 'Technology',
     date: '2026-08-02T11:00:00.000Z',
     location: 'The Podium, Lekki Phase 1',
-    venue: 'Lekki Phase 1, Lagos',
-    image: placeholderImage,
-    featured: true,
-    organizer: { name: 'Evently', image: placeholderImage },
-    attendeeCount: 410,
-    ticketTiers: [{ quantity: 400, sold: 280 }],
-    priceRange: { min: 25, max: 75 }
+    image: placeholderImage
   },
   {
     id: '6',
@@ -127,15 +114,34 @@ const relatedEvents = [
     category: 'Technology',
     date: '2026-08-16T10:30:00.000Z',
     location: 'Eko Convention Center',
-    venue: 'Eko Hotel, Lagos',
-    image: placeholderImage,
-    featured: false,
-    organizer: { name: 'Evently', image: placeholderImage },
-    attendeeCount: 520,
-    ticketTiers: [{ quantity: 500, sold: 390 }],
-    priceRange: { min: 40, max: 120 }
+    image: placeholderImage
   }
 ];
+
+function formatRelatedDate(dateString) {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
+  });
+}
+
+function RelatedEventCard({ event }) {
+  return (
+    <Link to={`/events/${event.id}`} className="related-card">
+      <div className="related-card-media">
+        <img src={event.image} alt={event.title} />
+      </div>
+      <div className="related-card-body">
+        <span className="related-card-category">{event.category}</span>
+        <h3>{event.title}</h3>
+        <p>\ud83d\udcc5 {formatRelatedDate(event.date)}</p>
+        <p>\ud83d\udccd {event.location}</p>
+      </div>
+    </Link>
+  );
+}
 
 export default function EventDetailPage() {
   const { eventId } = useParams();
@@ -256,7 +262,7 @@ export default function EventDetailPage() {
           <h2>Related Events</h2>
           <div className="event-related-grid">
             {relatedEvents.map(related => (
-              <EventCard key={related.id} event={related} />
+              <RelatedEventCard key={related.id} event={related} />
             ))}
           </div>
         </section>
