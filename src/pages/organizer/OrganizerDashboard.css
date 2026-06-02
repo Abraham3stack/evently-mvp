@@ -1,0 +1,413 @@
+.organizer-dashboard {
+  background: #ffffff;
+  color: #111827;
+  min-height: 100vh;
+  padding: 0 0 40px;
+}
+
+.organizer-dashboard body {
+  background: #ffffff;
+}
+
+.organizer-dashboard header:not(.org-topbar),
+.organizer-dashboard footer {
+  display: none;
+}
+
+.org-topbar {
+  background: #ffffff;
+}
+
+.org-topbar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.org-logo {
+  font-size: 24px;
+  font-weight: 700;
+  color: #e6007e;
+  text-decoration: none;
+}
+
+.org-topbar-nav {
+  display: flex;
+  gap: 28px;
+  font-size: 14px;
+}
+
+.org-topbar-nav a {
+  color: #111827;
+  text-decoration: none;
+}
+
+.org-topbar-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.org-btn {
+  border-radius: 12px;
+  padding: 10px 18px;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.org-btn-outline {
+  color: #e6007e;
+  border-color: #e6007e;
+  background: #ffffff;
+}
+
+.org-btn-primary {
+  color: #ffffff;
+  background: linear-gradient(90deg, #f1017c 0%, #4b0082 100%);
+  border: none;
+}
+
+.org-topbar-divider {
+  height: 2px;
+  background: linear-gradient(90deg, #f1017c, #a855f7);
+}
+
+.org-layout {
+  max-width: 1200px;
+  margin: 24px auto 0;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 24px;
+  padding: 0 16px;
+}
+
+.org-sidebar {
+  background: linear-gradient(180deg, #f1017c 0%, #6d22d6 100%);
+  border-radius: 24px;
+  padding: 26px 20px;
+  color: #ffffff;
+  min-height: 760px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.org-sidebar-title {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.org-sidebar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.org-sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 12px;
+  padding: 10px 12px;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 14px;
+  text-align: left;
+}
+
+.org-sidebar-item.active {
+  background: #ffffff;
+  color: #f1017c;
+}
+
+.org-sidebar-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.35);
+  margin: 8px 0;
+}
+
+.org-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.org-greeting {
+  background: #f5f5f5;
+  border-radius: 18px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.greeting-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f59ec3, #a855f7);
+}
+
+.greeting-text h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #e6007e;
+}
+
+.greeting-text span {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.bell {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #eeeeee;
+  display: grid;
+  place-items: center;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.stat-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+}
+
+.stat-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #f1017c;
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+}
+
+.stat-label {
+  margin: 0;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.stat-value {
+  margin: 4px 0 0;
+  font-weight: 700;
+  color: #f1017c;
+}
+
+.analytics-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 18px;
+}
+
+.net-sales {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 18px 20px;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.08);
+}
+
+.net-sales-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.net-sales-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #f1017c;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.filter-pill {
+  background: #f1017c;
+  color: #ffffff;
+  border-radius: 12px;
+  padding: 6px 12px;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.net-sales-summary {
+  display: flex;
+  gap: 20px;
+  margin: 10px 0 6px;
+}
+
+.net-sales-summary span {
+  display: block;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.net-sales-summary strong {
+  color: #f1017c;
+  font-size: 14px;
+}
+
+.sales-chart svg {
+  width: 100%;
+  height: 220px;
+}
+
+.chart-grid line {
+  stroke: #e5e7eb;
+  stroke-width: 1;
+}
+
+.chart-line {
+  fill: none;
+  stroke: #f1017c;
+  stroke-width: 3;
+}
+
+.chart-dot {
+  fill: #f1017c;
+}
+
+.chart-label {
+  font-size: 10px;
+  fill: #111827;
+  font-weight: 600;
+}
+
+.chart-percent {
+  font-size: 9px;
+  fill: #6b7280;
+}
+
+.activity-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.08);
+}
+
+.activity-card h3 {
+  color: #f1017c;
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.activity-body {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 12px;
+  align-items: center;
+}
+
+.donut {
+  width: 160px;
+  height: 160px;
+}
+
+.activity-labels {
+  display: grid;
+  gap: 8px;
+}
+
+.activity-item {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 4px 8px;
+  align-items: center;
+}
+
+.activity-value {
+  font-weight: 700;
+  font-size: 14px;
+  color: #111827;
+}
+
+.activity-percent {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.activity-legend {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #374151;
+  grid-column: span 2;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+@media (max-width: 1024px) {
+  .org-topbar-nav {
+    display: none;
+  }
+
+  .org-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .org-sidebar {
+    min-height: auto;
+  }
+
+  .analytics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .org-topbar-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .org-topbar-actions .org-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .activity-body {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+}
