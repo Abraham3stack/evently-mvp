@@ -1,219 +1,266 @@
-/**
- * Event Detail Page
- * Full event information with ticket tiers and organizer details
- */
+import { useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import {
+  MapPin,
+  Search,
+  SlidersHorizontal,
+  Share2,
+  Calendar,
+  Clock
+} from 'lucide-react';
+import Navbar from '@/components/home/Navbar';
+import EventCard from '@/components/attendee/EventCard';
+import './EventDetailPage.css';
 
-import { useParams, useNavigate } from 'react-router-dom';
-import { useEventById } from '@/queries/eventQueries';
-import Button from '@/components/common/Button';
-import Card from '@/components/common/Card';
-import Badge from '@/components/common/Badge';
-import Spinner from '@/components/common/Spinner';
+const placeholderImage =
+  'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="960" height="560"><defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop offset="0%" stop-color="%23f472b6"/><stop offset="100%" stop-color="%237e22ce"/></linearGradient></defs><rect width="100%" height="100%" fill="url(%23g)"/><circle cx="70%" cy="35%" r="160" fill="%23ffffff" opacity="0.2"/><circle cx="30%" cy="70%" r="220" fill="%23ffffff" opacity="0.16"/></svg>';
+
+const mockEvents = [
+  {
+    id: '1',
+    title: 'Future of African Tech: Design, AI & Innovation',
+    category: 'Technology',
+    date: 'Saturday, June 20th 2026',
+    time: '9:00 AM - 5:00 PM UTC',
+    location: 'The Podium, Lekki Phase 1',
+    address: '124 T.F. Kuboye Rd, Lekki Phase I, Lekki 106104, Lagos, Nigeria.',
+    description:
+      'Join designers, founders, developers and creators for a one-day experience of networking, innovation and future tech.',
+    about:
+      'Future of African Tech: Design, AI & Innovation is a one-day immersive experience bringing together designers, founders, developers, creators, and forward-thinking innovators to explore the future of technology in Africa.\n\nThis event is designed to spark meaningful conversations around product design, artificial intelligence, emerging technologies, startups, and digital innovation, while creating opportunities for collaboration, networking, and community building.\n\nWhether you\'re a creative, tech enthusiast, entrepreneur, or aspiring professional, expect inspiring keynote sessions, engaging panel discussions, live product showcases, and valuable connections with people actively shaping Africa\'s tech ecosystem.\n\nJoin us for a day of ideas, innovation, and future-focused conversations — where technology meets creativity and the future is built together.',
+    image: placeholderImage
+  },
+  {
+    id: '2',
+    title: 'Design Systems for Emerging Markets',
+    category: 'Technology',
+    date: 'Saturday, July 4th 2026',
+    time: '10:00 AM - 4:00 PM UTC',
+    location: 'Landmark Event Center',
+    address: 'Plot 2 & 3, Water Corporation Drive, Victoria Island, Lagos.',
+    description: 'A deep dive into scalable design systems for fast-growing teams.',
+    about: 'A practical, hands-on workshop for designers and PMs.',
+    image: placeholderImage
+  },
+  {
+    id: '3',
+    title: 'AI for Product Leaders',
+    category: 'Technology',
+    date: 'Saturday, July 18th 2026',
+    time: '9:30 AM - 3:30 PM UTC',
+    location: 'The Podium, Lekki Phase 1',
+    address: '124 T.F. Kuboye Rd, Lekki Phase I, Lekki 106104, Lagos, Nigeria.',
+    description: 'Learn how product leaders are adopting AI across teams.',
+    about: 'Keynotes, demos, and strategy sessions.',
+    image: placeholderImage
+  },
+  {
+    id: '4',
+    title: 'Startup Growth Lab',
+    category: 'Technology',
+    date: 'Saturday, July 12th 2026',
+    time: '10:00 AM - 4:00 PM UTC',
+    location: 'Landmark Event Center',
+    address: 'Plot 2 & 3, Water Corporation Drive, Victoria Island, Lagos.',
+    description: 'Growth tactics, mentorship, and actionable playbooks for founders.',
+    about: 'Workshops and networking with growth leaders.',
+    image: placeholderImage
+  },
+  {
+    id: '5',
+    title: 'Creative AI for Designers',
+    category: 'Technology',
+    date: 'Saturday, August 2nd 2026',
+    time: '12:00 PM - 4:30 PM UTC',
+    location: 'The Podium, Lekki Phase 1',
+    address: '124 T.F. Kuboye Rd, Lekki Phase I, Lekki 106104, Lagos, Nigeria.',
+    description: 'Explore AI workflows for design and prototyping.',
+    about: 'Hands-on sessions with practical demos.',
+    image: placeholderImage
+  },
+  {
+    id: '6',
+    title: 'Product Strategy Summit',
+    category: 'Technology',
+    date: 'Saturday, August 16th 2026',
+    time: '11:30 AM - 5:00 PM UTC',
+    location: 'Eko Convention Center',
+    address: 'Eko Hotel, Victoria Island, Lagos, Nigeria.',
+    description: 'Strategic frameworks for product leadership and growth.',
+    about: 'Keynotes, panels, and breakout rooms.',
+    image: placeholderImage
+  }
+];
+
+const relatedEvents = [
+  {
+    id: '4',
+    title: 'Startup Growth Lab',
+    category: 'Technology',
+    date: '2026-07-12T09:00:00.000Z',
+    location: 'Landmark Event Center',
+    venue: 'Victoria Island, Lagos',
+    image: placeholderImage,
+    featured: false,
+    organizer: { name: 'Evently', image: placeholderImage },
+    attendeeCount: 230,
+    ticketTiers: [{ quantity: 200, sold: 120 }],
+    priceRange: { min: 0, max: 0 }
+  },
+  {
+    id: '5',
+    title: 'Creative AI for Designers',
+    category: 'Technology',
+    date: '2026-08-02T11:00:00.000Z',
+    location: 'The Podium, Lekki Phase 1',
+    venue: 'Lekki Phase 1, Lagos',
+    image: placeholderImage,
+    featured: true,
+    organizer: { name: 'Evently', image: placeholderImage },
+    attendeeCount: 410,
+    ticketTiers: [{ quantity: 400, sold: 280 }],
+    priceRange: { min: 25, max: 75 }
+  },
+  {
+    id: '6',
+    title: 'Product Strategy Summit',
+    category: 'Technology',
+    date: '2026-08-16T10:30:00.000Z',
+    location: 'Eko Convention Center',
+    venue: 'Eko Hotel, Lagos',
+    image: placeholderImage,
+    featured: false,
+    organizer: { name: 'Evently', image: placeholderImage },
+    attendeeCount: 520,
+    ticketTiers: [{ quantity: 500, sold: 390 }],
+    priceRange: { min: 40, max: 120 }
+  }
+];
 
 export default function EventDetailPage() {
   const { eventId } = useParams();
-  const navigate = useNavigate();
-  const { data: event, isLoading, error } = useEventById(eventId);
+  const event = mockEvents.find(item => item.id === eventId);
 
-  if (isLoading) {
+  useEffect(() => {
+    document.body.classList.add('event-detail-page');
+    return () => document.body.classList.remove('event-detail-page');
+  }, []);
+
+  if (!event) {
     return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="flex justify-center items-center min-h-96">
-          <div className="flex flex-col items-center gap-4">
-            <Spinner size="lg" />
-            <p className="text-gray-600">Loading event details...</p>
+      <div className="event-detail-page">
+        <Navbar />
+        <main className="event-detail-container">
+          <div className="event-not-found">
+            <h2>Event not found</h2>
+            <p>We could not locate that event. Please explore upcoming events.</p>
+            <Link to="/events" className="event-action">Back to Events</Link>
           </div>
-        </div>
+        </main>
       </div>
     );
   }
-
-  if (error || !event) {
-    return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
-          <p className="text-red-700 font-semibold">Event not found</p>
-          <p className="text-red-600 mt-2">{error?.message || 'This event does not exist'}</p>
-          <Button variant="primary" onClick={() => navigate('/events')} className="mt-4">
-            Back to Events
-          </Button>
-        </div>
-      </div>
-    );
-  }
-
-  const eventDate = new Date(event.date);
-  const formattedDate = eventDate.toLocaleDateString('en-US', {
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric'
-  });
-  const formattedTime = eventDate.toLocaleTimeString('en-US', {
-    hour: '2-digit',
-    minute: '2-digit'
-  });
-
-  const totalCapacity = event.ticketTiers.reduce((acc, tier) => acc + tier.quantity, 0);
-  const totalSold = event.ticketTiers.reduce((acc, tier) => acc + tier.sold, 0);
-  const capacityPercent = Math.round((totalSold / totalCapacity) * 100);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      {/* Back Button */}
-      <button
-        onClick={() => navigate('/events')}
-        className="text-blue-600 hover:text-blue-700 font-semibold mb-6"
-      >
-        ← Back to Events
-      </button>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Main Content */}
-        <div className="lg:col-span-2">
-          {/* Event Image */}
-          <div className="mb-6">
-            <img
-              src={event.image}
-              alt={event.title}
-              className="w-full h-96 object-cover rounded-lg"
-            />
+    <div className="event-detail-page">
+      <Navbar />
+      <main className="event-detail-container">
+        <section className="event-search">
+          <button type="button" className="event-location">
+            <MapPin size={16} /> Lagos, Nigeria
+          </button>
+          <div className="event-search-input">
+            <Search size={16} />
+            <input type="text" placeholder="Discover events by name, venue or artist...." />
           </div>
+          <button type="button" className="event-filter" aria-label="Filter">
+            <SlidersHorizontal size={16} />
+          </button>
+        </section>
 
-          {/* Title and Badge */}
-          <div className="flex items-start gap-4 mb-4">
-            <div className="flex-1">
-              <h1 className="text-4xl font-bold text-gray-900 mb-2">{event.title}</h1>
-              <Badge variant="info" text={event.category} />
-            </div>
-            {event.featured && (
-              <Badge variant="success" text="Featured" />
-            )}
+        <section className="event-hero">
+          <div className="event-hero-frame">
+            <img src={event.image} alt={event.title} />
           </div>
+        </section>
 
-          {/* Date, Time, Location */}
-          <div className="space-y-2 mb-6 text-gray-600">
-            <p className="flex items-center gap-2 text-lg">
-              📅 <span>{formattedDate} at {formattedTime}</span>
-            </p>
-            <p className="flex items-center gap-2 text-lg">
-              📍 <span>{event.location}</span>
-            </p>
-            <p className="flex items-center gap-2 text-lg">
-              🏢 <span>{event.venue}</span>
-            </p>
+        <section className="event-meta">
+          <span className="event-category">{event.category}</span>
+          <button type="button" className="event-share">
+            <Share2 size={16} /> Share
+          </button>
+        </section>
+
+        <section className="event-content">
+          <div className="event-main">
+            <h1>{event.title}</h1>
+            <p className="event-summary">{event.description}</p>
+
+            <div className="event-about">
+              <h2>About this event</h2>
+              {event.about.split('\n\n').map(paragraph => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
           </div>
-
-          {/* Description */}
-          <Card title="About This Event" className="mb-6">
-            <p className="text-gray-700 leading-relaxed">{event.description}</p>
-          </Card>
-
-          {/* Organizer */}
-          <Card title="Organizer" className="mb-6">
-            <div className="flex items-center gap-4">
-              <img
-                src={event.organizer.image}
-                alt={event.organizer.name}
-                className="w-16 h-16 rounded-full"
-              />
+          <aside className="event-ticket-card">
+            <div className="ticket-row">
+              <Calendar size={18} />
               <div>
-                <p className="font-semibold text-gray-900">{event.organizer.name}</p>
-                <p className="text-sm text-gray-600">Event Organizer</p>
+                <strong>{event.date}</strong>
               </div>
             </div>
-          </Card>
-
-          {/* Event Stats */}
-          <Card title="Event Statistics" className="mb-6">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="ticket-row">
+              <Clock size={18} />
               <div>
-                <p className="text-gray-600 text-sm">Capacity</p>
-                <p className="text-2xl font-bold text-gray-900">{totalCapacity}</p>
+                <strong>{event.time}</strong>
               </div>
+            </div>
+            <div className="ticket-row">
+              <MapPin size={18} />
               <div>
-                <p className="text-gray-600 text-sm">Tickets Sold</p>
-                <p className="text-2xl font-bold text-gray-900">{totalSold}</p>
-              </div>
-              <div className="col-span-2">
-                <p className="text-gray-600 text-sm mb-2">Capacity Used</p>
-                <div className="w-full bg-gray-200 rounded-full h-2">
-                  <div
-                    className="bg-blue-600 h-2 rounded-full"
-                    style={{ width: `${capacityPercent}%` }}
-                  />
-                </div>
-                <p className="text-sm text-gray-600 mt-2">{capacityPercent}% full</p>
+                <strong>{event.location}</strong>
               </div>
             </div>
-          </Card>
-        </div>
+            <Link to={`/checkout/${event.id}`} className="event-action">
+              Get tickets
+            </Link>
+          </aside>
+        </section>
 
-        {/* Sidebar - Ticket Tiers and Attendee Info */}
-        <div className="lg:col-span-1">
-          {/* Attendees */}
-          <Card title="Attendees" className="mb-6">
-            <div className="text-center">
-              <p className="text-4xl font-bold text-gray-900 mb-2">{event.attendeeCount}</p>
-              <p className="text-gray-600">People attending</p>
+        <section className="event-details">
+          <h2>Event Details</h2>
+          <div className="event-details-grid">
+            <div className="event-info-card">
+              <Calendar size={22} />
+              <h3>Date</h3>
+              <p>{event.date}</p>
+              <span>1-Day Event</span>
             </div>
-          </Card>
-
-          {/* Ticket Tiers */}
-          <Card title="Ticket Options" className="mb-6">
-            <div className="space-y-4">
-              {event.ticketTiers.map(tier => {
-                const spotsLeft = tier.quantity - tier.sold;
-                const soldOut = spotsLeft === 0;
-
-                return (
-                  <div key={tier.id} className="border border-gray-200 rounded-lg p-4">
-                    <div className="flex justify-between items-start mb-2">
-                      <h4 className="font-semibold text-gray-900">{tier.name}</h4>
-                      {tier.price === 0 ? (
-                        <Badge variant="success" text="FREE" />
-                      ) : (
-                        <span className="font-bold text-gray-900">
-                          ${tier.price.toFixed(2)}
-                        </span>
-                      )}
-                    </div>
-                    <p className="text-sm text-gray-600 mb-3">{tier.description}</p>
-                    <div className="flex justify-between items-center mb-3">
-                      <span className="text-sm text-gray-600">
-                        {soldOut ? 'Sold Out' : `${spotsLeft} left`}
-                      </span>
-                      <span className="text-xs text-gray-500">
-                        {tier.sold}/{tier.quantity} sold
-                      </span>
-                    </div>
-                    {!soldOut && (
-                      <Button
-                        variant="primary"
-                        size="sm"
-                        onClick={() => navigate(`/checkout/${event.id}`)}
-                        className="w-full"
-                      >
-                        Get Tickets
-                      </Button>
-                    )}
-                  </div>
-                );
-              })}
+            <div className="event-info-card">
+              <Clock size={22} />
+              <h3>Time</h3>
+              <p>{event.time}</p>
+              <span>Doors Open 8:00 AM</span>
             </div>
-          </Card>
+            <div className="event-info-card">
+              <MapPin size={22} />
+              <h3>Location</h3>
+              <p>{event.location}</p>
+              <span>{event.address}</span>
+            </div>
+          </div>
+        </section>
 
-          {/* Tags */}
-          {event.tags && event.tags.length > 0 && (
-            <Card title="Tags">
-              <div className="flex flex-wrap gap-2">
-                {event.tags.map(tag => (
-                  <Badge key={tag} variant="default" text={tag} />
-                ))}
-              </div>
-            </Card>
-          )}
-        </div>
-      </div>
+        <section className="event-related">
+          <h2>Related Events</h2>
+          <div className="event-related-grid">
+            {relatedEvents.map(related => (
+              <EventCard key={related.id} event={related} />
+            ))}
+          </div>
+        </section>
+      </main>
     </div>
   );
 }
