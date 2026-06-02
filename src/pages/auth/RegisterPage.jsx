@@ -60,11 +60,11 @@ export default function RegisterPage() {
   };
 
   const gradientContent = (
-    <div className="text-center">
-      <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+    <div className="text-center max-w-md">
+      <h2 className="text-4xl md:text-5xl font-black text-white mb-6 leading-tight">
         Let's Launch Your Next Big Event.
       </h2>
-      <p className="text-white text-lg leading-relaxed max-w-sm">
+      <p className="text-white text-base leading-relaxed">
         Join thousands of creators using <span className="font-bold">EVENTLY</span> to build high-converting event pages, manage ticket tiers, and track revenue instantly.
       </p>
     </div>
@@ -80,22 +80,22 @@ export default function RegisterPage() {
           className="w-full"
         >
           {/* Logo */}
-          <motion.div variants={itemVariants}>
+          <motion.div variants={itemVariants} className="mb-12">
             <AuthLogo />
           </motion.div>
 
           {/* Heading */}
-          <motion.div variants={itemVariants} className="mb-6 md:mb-8">
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+          <motion.div variants={itemVariants} className="mb-8">
+            <h1 className="text-3xl md:text-4xl font-black text-gray-900 mb-3 leading-tight">
               Create your free organizer account
             </h1>
-            <p className="text-gray-500 text-sm md:text-base">
-              No credit card required. Set up your profile and start creating immediately.....
+            <p className="text-gray-500 text-sm leading-relaxed">
+              No credit card required. Set up your profile and start creating immediately.
             </p>
           </motion.div>
 
           {/* Form */}
-          <motion.form onSubmit={handleSubmit(onSubmit)} variants={itemVariants} className="mb-6">
+          <motion.form onSubmit={handleSubmit(onSubmit)} variants={itemVariants} className="mb-8">
             {/* Organization */}
             <AuthInput
               label="Organization"
@@ -137,10 +137,10 @@ export default function RegisterPage() {
             />
 
             {/* Terms */}
-            <motion.div variants={itemVariants} className="mb-6 text-xs md:text-sm text-gray-600 text-center">
+            <motion.div variants={itemVariants} className="mb-8 text-xs md:text-sm text-gray-600 leading-relaxed">
               <p>
                 By clicking{' '}
-                <span className="font-semibold text-gray-900">Create Account</span>, I agree to
+                <span className="font-semibold text-gray-900">"Create Account"</span>, I agree to
                 Evently's{' '}
                 <Link to="#" className="text-red-600 hover:text-red-700 font-semibold">
                   Terms of Service
@@ -153,27 +153,30 @@ export default function RegisterPage() {
             </motion.div>
 
             {/* Register Button */}
-            <motion.div variants={itemVariants}>
-              <Button
-                variant="primary"
-                size="lg"
-                loading={isSubmitting}
-                disabled={isSubmitting}
+            <motion.div variants={itemVariants} className="mb-6">
+              <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-semibold py-3"
+                disabled={isSubmitting}
+                style={{
+                  background: 'linear-gradient(to right, #ec4899, #9333ea)',
+                  opacity: isSubmitting ? 0.7 : 1,
+                }}
+                className="w-full text-white font-bold py-3 px-4 rounded-lg transition-all duration-200 disabled:cursor-not-allowed hover:shadow-lg"
+                onMouseEnter={(e) => { if (!isSubmitting) e.currentTarget.style.background = 'linear-gradient(to right, #db2777, #7e22ce)'; }}
+                onMouseLeave={(e) => { if (!isSubmitting) e.currentTarget.style.background = 'linear-gradient(to right, #ec4899, #9333ea)'; }}
               >
                 {isSubmitting ? 'Creating account...' : 'Create Organizer Account →'}
-              </Button>
+              </button>
             </motion.div>
           </motion.form>
 
           {/* Login Link */}
-          <motion.div variants={itemVariants} className="text-center text-gray-600">
-            <p className="text-sm">
+          <motion.div variants={itemVariants} className="text-center text-gray-600 text-sm">
+            <p>
               Already have an account?{' '}
               <Link
                 to="/login"
-                className="text-pink-500 hover:text-pink-600 font-semibold transition-colors"
+                className="text-pink-600 hover:text-pink-700 font-semibold transition-colors"
               >
                 Log in
               </Link>
@@ -199,7 +202,7 @@ export default function RegisterPage() {
             onClick={handleSuccessClose}
             className="w-full"
           >
-            Continue to Login
+            Proceed to Login
           </Button>
         </div>
       </Modal>
