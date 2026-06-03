@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { QRCodeSVG } from 'qrcode.react';
 import './TicketPlaceholderPage.css';
 
 const placeholderImage =
@@ -25,6 +26,12 @@ export default function TicketPlaceholderPage() {
     () => mockEvents.find(item => item.id === eventId) || mockEvents[0],
     [eventId]
   );
+  const qrValue = JSON.stringify({
+    eventId,
+    ticketId: ticketData.ticketId,
+    ticketType: ticketData.type,
+    status: ticketData.status.toUpperCase()
+  });
   const [feedback, setFeedback] = useState('');
 
   useEffect(() => {
@@ -83,7 +90,13 @@ export default function TicketPlaceholderPage() {
                 <div className="qr-corner top-right" />
                 <div className="qr-corner bottom-left" />
                 <div className="qr-corner bottom-right" />
-                <div className="qr-code" aria-hidden="true" />
+                <QRCodeSVG
+                  value={qrValue}
+                  size={220}
+                  bgColor="#ffffff"
+                  fgColor="#000000"
+                  level="H"
+                />
               </div>
             </div>
           </div>

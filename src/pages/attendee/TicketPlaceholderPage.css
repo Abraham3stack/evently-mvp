@@ -123,17 +123,9 @@
   position: relative;
 }
 
-.qr-code {
+.ticket-qr-frame svg {
   width: 160px;
   height: 160px;
-  background:
-    repeating-linear-gradient(90deg, #000 0 8px, #fff 8px 16px),
-    repeating-linear-gradient(0deg, #000 0 8px, #fff 8px 16px);
-  mask-image: radial-gradient(circle at 20% 20%, #000 0 12px, transparent 13px),
-    radial-gradient(circle at 80% 20%, #000 0 12px, transparent 13px),
-    radial-gradient(circle at 20% 80%, #000 0 12px, transparent 13px),
-    radial-gradient(circle at 50% 50%, #000 0 60%, transparent 61%);
-  mask-composite: exclude;
 }
 
 .qr-corner {
