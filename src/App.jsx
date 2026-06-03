@@ -27,6 +27,7 @@ import OrganizerBookingsPage from './pages/organizer/OrganizerBookingsPage';
 import AttendeeListPage from './pages/organizer/AttendeeListPage';
 import ValidateTicketPage from './pages/organizer/ValidateTicketPage';
 import AnalyticsPage from './pages/organizer/AnalyticsPage';
+import ManualVerificationPage from './pages/organizer/ManualVerificationPage';
 import VotingPage from './pages/voting/VotingPage';
 import VotingResultsPage from './pages/voting/VotingResultsPage';
 
@@ -76,6 +77,7 @@ function App() {
                   <Route path="/organizer/events/:eventId/attendees" element={<AttendeeListPage />} />
                   <Route path="/organizer/events/:eventId/validate" element={<ValidateTicketPage />} />
                   <Route path="/organizer/events/:eventId/analytics" element={<AnalyticsPage />} />
+                  <Route path="/organizer/verify" element={<ManualVerificationPage />} />
 
                   {/* Voting Routes */}
                   <Route path="/voting/:eventId" element={<VotingPage />} />

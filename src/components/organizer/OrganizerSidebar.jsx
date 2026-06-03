@@ -16,7 +16,7 @@ const mainNav = [
   { label: 'Manage Events', icon: CalendarCheck, to: '/organizer/events' },
   { label: 'Booking & Tickets', icon: Ticket, to: '/organizer/bookings' },
   { label: 'Check-in', icon: BadgeCheck },
-  { label: 'Verify', icon: ShieldCheck },
+  { label: 'Verify', icon: ShieldCheck, to: '/organizer/verify' },
   { label: 'Analytics', icon: BarChart3 }
 ];
 
