@@ -11,6 +11,7 @@ import {
   Ticket,
   User
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import OrganizerTopbar from '@/components/organizer/OrganizerTopbar';
 import OrganizerSidebar from '@/components/organizer/OrganizerSidebar';
 import VerificationSearchPanel from '@/components/organizer/VerificationSearchPanel';
@@ -90,9 +91,9 @@ export default function ManualVerificationPage() {
 
           <div className="org-manage-header">
             <div className="org-actions">
-              <button type="button" className="org-btn org-btn-primary">
+              <Link to="/organizer/create-event" className="org-btn org-btn-primary">
                 + New Event
-              </button>
+              </Link>
               <button type="button" className="org-btn org-btn-outline org-btn-pill">
                 Attendee Insights <ChevronDown size={14} />
               </button>

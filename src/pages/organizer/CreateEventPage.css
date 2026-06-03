@@ -1,0 +1,143 @@
+.organizer-create-event {
+  background: #ffffff;
+  color: #111827;
+  min-height: 100vh;
+  padding-bottom: 40px;
+}
+
+.organizer-create-event header:not(.org-topbar),
+.organizer-create-event footer {
+  display: none;
+}
+
+.create-event-title h1 {
+  margin: 0;
+  font-size: 24px;
+  color: #7e22ce;
+}
+
+.create-event-form {
+  display: grid;
+  gap: 20px;
+}
+
+.create-section {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f3d3e8;
+}
+
+.create-section h2 {
+  margin: 0 0 14px;
+  font-size: 18px;
+  color: #111827;
+}
+
+.create-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.create-field {
+  display: grid;
+  gap: 8px;
+}
+
+.create-field label {
+  font-size: 13px;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.create-field input,
+.create-field select,
+.create-field textarea {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 14px;
+  outline: none;
+  background: #ffffff;
+}
+
+.create-field textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.banner-upload {
+  border: 1px dashed #f1b8de;
+  border-radius: 14px;
+  padding: 18px;
+  display: grid;
+  place-items: center;
+  background: #fdf2f8;
+  color: #7e22ce;
+  font-weight: 600;
+  gap: 6px;
+}
+
+.banner-upload span {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.ticket-tier-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.ticket-tier-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 14px;
+  display: grid;
+  gap: 12px;
+}
+
+.ticket-tier-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tier-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.form-error {
+  color: #dc2626;
+  font-size: 12px;
+}
+
+.create-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.create-actions .org-btn-primary {
+  min-width: 160px;
+}
+
+.success-banner {
+  border: 1px solid #86efac;
+  background: #ecfdf3;
+  color: #15803d;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+@media (max-width: 960px) {
+  .create-grid {
+    grid-template-columns: 1fr;
+  }
+}

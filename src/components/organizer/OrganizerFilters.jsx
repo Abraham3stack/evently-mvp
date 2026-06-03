@@ -5,9 +5,9 @@ export default function OrganizerFilters({ insightsLink }) {
   return (
     <div className="org-manage-header">
       <div className="org-actions">
-        <button type="button" className="org-btn org-btn-primary">
+        <Link to="/organizer/create-event" className="org-btn org-btn-primary">
           + New Event
-        </button>
+        </Link>
         {insightsLink ? (
           <Link to={insightsLink} className="org-btn org-btn-outline org-btn-pill">
             Attendee Insights <ChevronDown size={16} />

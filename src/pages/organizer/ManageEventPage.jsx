@@ -101,6 +101,15 @@ export default function ManageEventPage() {
 
           <OrganizerFilters insightsLink={`/organizer/events/${eventId}/insights`} />
 
+          <div className="org-event-actions-row">
+            <Link to={`/organizer/events/${eventId}/attendees`} className="org-btn org-btn-outline org-btn-pill">
+              View Attendees
+            </Link>
+            <Link to={`/organizer/events/${eventId}/analytics`} className="org-btn org-btn-outline org-btn-pill">
+              View Analytics
+            </Link>
+          </div>
+
           <section className="org-details-grid">
             <div className="org-details-card">
               <div className="org-details-dot" />
