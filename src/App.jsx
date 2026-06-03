@@ -12,6 +12,7 @@ import HomePage from './pages/HomePage';
 import NotFoundPage from './pages/NotFoundPage';
 import EventsPage from './pages/attendee/EventsPage';
 import EventDetailPage from './pages/attendee/EventDetailPage';
+import TicketSelectionPage from './pages/attendee/TicketSelectionPage';
 import CheckoutPage from './pages/attendee/CheckoutPage';
 import MyTicketsPage from './pages/attendee/MyTicketsPage';
 import TicketDetailPage from './pages/attendee/TicketDetailPage';
@@ -56,6 +57,7 @@ function App() {
                   <Route path="/" element={<HomePage />} />
                   <Route path="/events" element={<EventsPage />} />
                   <Route path="/events/:eventId" element={<EventDetailPage />} />
+                  <Route path="/events/:eventId/tickets" element={<TicketSelectionPage />} />
                   <Route path="/checkout/:eventId" element={<CheckoutPage />} />
                   <Route path="/my-tickets" element={<MyTicketsPage />} />
                   <Route path="/tickets/:ticketId" element={<TicketDetailPage />} />

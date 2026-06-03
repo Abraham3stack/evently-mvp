@@ -228,7 +228,7 @@ export default function EventDetailPage() {
                 <strong>{event.location}</strong>
               </div>
             </div>
-            <Link to={`/checkout/${event.id}`} className="event-action">
+            <Link to={`/events/${event.id}/tickets`} className="event-action">
               Get tickets
             </Link>
           </aside>
