@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ChevronLeft, Minus, Plus, CheckCircle2 } from 'lucide-react';
 import './TicketSelectionPage.css';
 
@@ -73,6 +73,7 @@ const ticketOptions = [
 
 export default function TicketSelectionPage() {
   const { eventId } = useParams();
+  const navigate = useNavigate();
   const event = useMemo(
     () => mockEvents.find(item => item.id === eventId) || mockEvents[0],
     [eventId]
@@ -89,9 +90,8 @@ export default function TicketSelectionPage() {
   const handleDecrease = () => setQuantity(current => Math.max(1, current - 1));
 
   const handleContinue = tierId => {
-    const selected = ticketOptions.find(option => option.id === tierId);
-    console.log('Selected ticket:', selected);
-    console.log('Quantity:', quantity);
+    setSelectedTier(tierId);
+    navigate(`/events/${eventId}/payment`);
   };
 
   return (
@@ -164,7 +164,6 @@ export default function TicketSelectionPage() {
                     className="ticket-cta"
                     onClick={eventClick => {
                       eventClick.stopPropagation();
-                      setSelectedTier(option.id);
                       handleContinue(option.id);
                     }}
                   >
